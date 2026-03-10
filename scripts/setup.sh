@@ -1,61 +1,90 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# =============================================================================
 # Cursor Setup Script
+# Sets up .cursor/rules/, VS Code settings, and BugBot
 # Run: chmod +x setup.sh && ./setup.sh
+# =============================================================================
 
-set -e
-echo "🚀 Setting up Cursor..."
+set -euo pipefail
 
-# 1. Install Cursor
-echo "📦 Cursor must be downloaded from https://cursor.sh"
-echo "   After installation, come back and run this script again"
-echo ""
+BLUE='\033[0;34m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
+log()  { echo -e "${BLUE}[cursor-setup]${NC} $*"; }
+ok()   { echo -e "${GREEN}[✓]${NC} $*"; }
+warn() { echo -e "${YELLOW}[!]${NC} $*"; }
 
-# 2. Install skills from Antigravity Awesome Skills
-echo "🎯 Installing Antigravity Awesome Skills for Cursor..."
-npx antigravity-awesome-skills
+log "Cursor Project Setup"
 
-# 3. Copy cursor-specific skills to ~/.cursor/skills/
-echo "📂 Setting up cursor skills..."
-mkdir -p ~/.cursor/skills
-for f in skills/*.md; do
-  cp "$f" ~/.cursor/skills/ 2>/dev/null || true
-done
+# Install Cursor extensions
+if command -v cursor >/dev/null 2>&1; then
+  log "Installing VS Code extensions..."
+  cursor --install-extension esbenp.prettier-vscode 2>/dev/null && ok "Prettier" || true
+  cursor --install-extension dbaeumer.vscode-eslint 2>/dev/null && ok "ESLint" || true
+  cursor --install-extension eamodio.gitlens 2>/dev/null && ok "GitLens" || true
+else
+  warn "Cursor not in PATH. Download from https://cursor.sh"
+fi
 
-# 4. Set up MCP config
-echo "🔌 Copying MCP config..."
-mkdir -p ~/.cursor
-cp configs/mcp.json ~/.cursor/mcp.json
-echo "⚠️  Edit ~/.cursor/mcp.json and replace YOUR_*_TOKEN_HERE with real values"
-
-# 5. Set up project rules
-echo "📋 Setting up Cursor rules template..."
+# .cursor/rules/
+log "Creating .cursor/rules/..."
 mkdir -p .cursor/rules
-cat > .cursor/rules/project-standards.mdc << 'EOF'
----
-description: Project coding standards
-alwaysApply: true
----
+
+cat > .cursor/rules/general.mdc << 'EOF'
 # Project Standards
-- TypeScript strict mode
-- Conventional commits
-- Test coverage 80%+
-- Immutable data patterns
+
+- TypeScript strict mode, no `any`
+- Immutable patterns: return new, never mutate
+- Functions under 50 lines
+- Error handling required at all boundaries
+- Conventional commits: type(scope): description
+
+## Testing
+- 80%+ coverage minimum
+- Unit tests for all functions
+- Integration tests for all API endpoints
+
+## Code Review
 - No hardcoded secrets
+- All async paths have error handling
+- No `console.log` in production code
 EOF
+ok "Created .cursor/rules/general.mdc"
+
+# Language-specific rules
+if [[ -f package.json ]] && grep -q '"react"' package.json 2>/dev/null; then
+  cat > .cursor/rules/react.mdc << 'EOF'
+# React Rules
+- Functional components only
+- Custom hooks for reusable logic
+- No prop drilling: use Context
+- useCallback for child event handlers
+- useMemo for expensive computations
+EOF
+  ok "Created React rules"
+fi
+
+# VS Code settings
+mkdir -p .vscode
+if [[ ! -f .vscode/settings.json ]]; then
+  cat > .vscode/settings.json << 'EOF'
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}
+EOF
+  ok "Created .vscode/settings.json"
+fi
 
 echo ""
-echo "✨ Cursor is ready!"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
+echo -e "${GREEN}  Cursor Setup Complete!${NC}"
+echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo "Next steps:"
-echo "  1. Download Cursor at https://cursor.sh"
-echo "  2. Open your project folder in Cursor"
-echo "  3. Review .cursor/rules/ for AI context"
-echo "  4. Use Cmd+K for inline edits"
-echo "  5. Use Cmd+L for chat"
-echo "  6. Use Cmd+Shift+I for Composer/Agent mode"
+echo "Manual steps in Cursor:"
+echo "  1. Settings → Codebase Indexing → Enable"
+echo "  2. Model: Tab=haiku, Cmd+K=sonnet, Composer=opus"
+echo "  3. Settings → BugBot → Enable → Connect GitHub"
 echo ""
-echo "Key shortcuts:"
-echo "  Tab       — Accept autocomplete"
-echo "  Cmd+K     — Inline edit"
-echo "  Cmd+L     — Chat"
-echo "  Cmd+I     — Composer (agent mode)"
+echo "Shortcuts: Tab=accept, Cmd+K=edit, Cmd+I=composer, Cmd+L=chat"

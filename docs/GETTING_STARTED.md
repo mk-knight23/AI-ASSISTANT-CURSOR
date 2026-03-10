@@ -1,136 +1,151 @@
-# Getting Started with Antigravity Awesome Skills (V4)
+# Getting Started with Cursor
 
-**New here? This guide will help you supercharge your AI Agent in 5 minutes.**
+## What is Cursor?
 
----
-
-## 🤔 What Are "Skills"?
-
-AI Agents (like **Claude Code**, **Gemini**, **Cursor**) are smart, but they lack specific knowledge about your tools.
-**Skills** are specialized instruction manuals (markdown files) that teach your AI how to perform specific tasks perfectly, every time.
-
-**Analogy:** Your AI is a brilliant intern. **Skills** are the SOPs (Standard Operating Procedures) that make them a Senior Engineer.
+Cursor is a VS Code fork with AI built in at every level. Pro at $20/month. Trusted by Stripe, NVIDIA, Figma.
 
 ---
 
-## ⚡️ Quick Start: The "Starter Packs"
-
-Don't panic about the 700+ skills. You don't need them all at once.
-We have curated **Starter Packs** to get you running immediately.
-
-You **install the full repo once** (npx or clone); Starter Packs are curated lists to help you **pick which skills to use** by role (e.g. Web Wizard, Hacker Pack)—they are not a different way to install.
-
-### 1. Install the Repo
-
-**Option A — npx (easiest):**
+## Install
 
 ```bash
-npx antigravity-awesome-skills
+# Download from cursor.sh
+# macOS:
+brew install --cask cursor
+
+# Or download .dmg / .exe / .AppImage from cursor.sh
 ```
 
-This clones to `~/.agent/skills` by default. Use `--cursor`, `--claude`, `--gemini`, or `--codex` to install for a specific tool, or `--path <dir>` for a custom location. Run `npx antigravity-awesome-skills --help` for details.
+---
 
-If you see a 404 error, use: `npx github:sickn33/antigravity-awesome-skills`
+## First Run
 
-**Option B — git clone:**
+1. Open Cursor
+2. Sign in with GitHub
+3. Import VS Code settings/extensions (optional)
+4. `File → Open Folder` → your project
+
+---
+
+## Index Your Codebase (Critical First Step)
+
+```
+Cursor Settings → Cursor Settings → Codebase Indexing → Enable
+```
+
+Wait for indexing, then:
+```
+@Codebase Where is user authentication?
+@Codebase How are API routes organized?
+@Codebase What database ORM is used?
+```
+
+---
+
+## Three Modes
+
+### Tab — Always Active
+Code normally. `Tab` accepts. `Ctrl+→` accepts word by word.
+
+### Cmd+K — Inline Edit
+```
+1. Select code
+2. Cmd+K
+3. "add error handling"
+4. Tab → accept, Esc → reject
+```
+
+### Composer (Cmd+I) — Agent Mode
+```
+1. Cmd+I
+2. Describe full task
+3. Composer plans + executes across files
+4. Review diffs → accept/reject
+```
+
+---
+
+## Set Up .cursor/rules/
 
 ```bash
-# Universal (works for most agents)
-git clone https://github.com/sickn33/antigravity-awesome-skills.git .agent/skills
+mkdir -p .cursor/rules
+cat > .cursor/rules/general.mdc << 'EOF'
+# Project Standards
+
+## Language: TypeScript strict mode, no any
+
+## Testing: Vitest + Playwright, 80% coverage minimum
+
+## Style: Immutable patterns, functions <50 lines
+
+## Commits: Conventional commits format
+EOF
 ```
 
-### 2. Pick Your Persona
+---
 
-Find the bundle that matches your role (see [BUNDLES.md](BUNDLES.md)):
+## Model Selection
 
-| Persona               | Bundle Name    | What's Inside?                                    |
-| :-------------------- | :------------- | :------------------------------------------------ |
-| **Web Developer**     | `Web Wizard`   | React Patterns, Tailwind mastery, Frontend Design |
-| **Security Engineer** | `Hacker Pack`  | OWASP, Metasploit, Pentest Methodology            |
-| **Manager / PM**      | `Product Pack` | Brainstorming, Planning, SEO, Strategy            |
-| **Everything**        | `Essentials`   | Clean Code, Planning, Validation (The Basics)     |
+```
+Cursor Settings → Models → Configure
+
+Tab Completion:    claude-haiku-4-5   (fast, cheap)
+Inline Edit:       claude-sonnet-4-6  (good quality)
+Composer/Agent:    claude-opus-4-6    (deep reasoning)
+```
 
 ---
 
-## 🧭 Bundles vs Workflows
+## Enable BugBot
 
-Bundles and workflows solve different problems:
+```
+Cursor Settings → BugBot → Enable
+Connect GitHub/GitLab repository
+```
 
-- **Bundles** = curated sets by role (what to pick).
-- **Workflows** = step-by-step playbooks (how to execute).
-
-Start with bundles in [BUNDLES.md](BUNDLES.md), then run a workflow from [WORKFLOWS.md](WORKFLOWS.md) when you need guided execution.
-
-Example:
-
-> "Use **@antigravity-workflows** and run `ship-saas-mvp` for my project idea."
+Every PR gets automatic review.
 
 ---
 
-## 🚀 How to Use a Skill
+## @Context Symbols
 
-Once installed, just talk to your AI naturally.
-
-### Example 1: Planning a Feature (**Essentials**)
-
-> "Use **@brainstorming** to help me design a new login flow."
-
-**What happens:** The AI loads the brainstorming skill, asks you structured questions, and produces a professional spec.
-
-### Example 2: Checking Your Code (**Web Wizard**)
-
-> "Run **@lint-and-validate** on this file and fix errors."
-
-**What happens:** The AI follows strict linting rules defined in the skill to clean your code.
-
-### Example 3: Security Audit (**Hacker Pack**)
-
-> "Use **@api-security-best-practices** to review my API endpoints."
-
-**What happens:** The AI audits your code against OWASP standards.
+| Symbol | References |
+|--------|-----------|
+| `@Codebase` | Semantic search all files |
+| `@File` | Specific file |
+| `@Folder` | All files in folder |
+| `@Docs` | Indexed docs |
+| `@Web` | Live web |
+| `@Git` | Git history |
 
 ---
 
-## 🔌 Supported Tools
+## First Composer Task
 
-| Tool            | Status          | Path              |
-| :-------------- | :-------------- | :---------------- |
-| **Claude Code** | ✅ Full Support | `.claude/skills/` |
-| **Gemini CLI**  | ✅ Full Support | `.gemini/skills/` |
-| **Codex CLI**   | ✅ Full Support | `.codex/skills/`  |
-| **Antigravity** | ✅ Native       | `.agent/skills/`  |
-| **Cursor**      | ✅ Native       | `.cursor/skills/` |
-| **Copilot**     | ⚠️ Text Only    | Manual copy-paste |
+```
+Cmd+I
 
----
-
-## 🛡️ Trust & Safety (New in V4)
-
-We classify skills so you know what you're running:
-
-- 🟣 **Official**: Maintained by Anthropic/Google/Vendors (High Trust).
-- 🔵 **Safe**: Community skills that are non-destructive (Read-only/Planning).
-- 🔴 **Risk**: Skills that modify systems or perform security tests (Authorized Use Only).
-
-_Check the [Skill Catalog](../CATALOG.md) for the full list._
+"Set up Next.js 15 with TypeScript, Tailwind CSS,
+Prisma + PostgreSQL, Auth.js, Vitest, Playwright.
+Create example files for each."
+```
 
 ---
 
-## ❓ FAQ
+## Keyboard Shortcuts
 
-**Q: Do I need to install all 700+ skills?**
-A: You clone the whole repo once; your AI only _reads_ the skills you invoke (or that are relevant), so it stays lightweight. **Starter Packs** in [BUNDLES.md](BUNDLES.md) are curated lists to help you discover the right skills for your role—they don't change how you install.
-
-**Q: Can I make my own skills?**
-A: Yes! Use the **@skill-creator** skill to build your own.
-
-**Q: Is this free?**
-A: Yes, MIT License. Open Source forever.
+| Shortcut | Action |
+|----------|--------|
+| `Tab` | Accept completion |
+| `Cmd+K` | Inline edit |
+| `Cmd+I` | Open Composer |
+| `Cmd+L` | Open Chat |
+| `Esc` | Reject suggestion |
 
 ---
 
-## ⏭️ Next Steps
+## Next Steps
 
-1. [Browse the Bundles](BUNDLES.md)
-2. [See Real-World Examples](EXAMPLES.md)
-3. [Contribute a Skill](../CONTRIBUTING.md)
+- Read [FEATURES.md](FEATURES.md) — all features
+- Read [WORKFLOWS.md](WORKFLOWS.md) — real workflows
+- Create `.cursor/rules/` for your project
