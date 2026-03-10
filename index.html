@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cursor AI — The most powerful AI IDE. Tab, Cmd+K, Composer, BugBot, cloud agents, codebase indexing. Used by Stripe, NVIDIA, Figma." />
+  <title>Cursor AI — AI Assistant Showcase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--bg:#020617;--surface:#0F172A;--surface-2:#1E293B;--surface-3:#334155;--border:rgba(148,163,184,.1);--text:#F8FAFC;--muted:#94A3B8;--dim:#64748B;--accent:#8B5CF6;--accent-glow:rgba(139,92,246,.12);--green:#22C55E;--font-h:'Space Grotesk',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'JetBrains Mono',monospace;--r:12px;--r-sm:8px;--t:200ms cubic-bezier(.4,0,.2,1)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.65;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--surface)}::-webkit-scrollbar-thumb{background:#334155;border-radius:3px}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;background:rgba(2,6,23,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-back{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:14px;transition:color var(--t)}.nav-back:hover{color:var(--text)}
+    .nav-brand{font-family:var(--font-h);font-weight:700;font-size:16px;display:flex;align-items:center;gap:8px}
+    .brand-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+    .nav-badge{padding:4px 12px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.3);border-radius:100px;font-size:12px;font-weight:600;color:var(--accent)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 80% 60% at 50% 50%,black,transparent)}
+    .hero-glow{position:absolute;width:700px;height:500px;top:50%;left:50%;transform:translate(-50%,-65%);background:radial-gradient(ellipse,rgba(139,92,246,.08) 0%,transparent 70%);pointer-events:none}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;background:var(--accent-glow);border:1px solid rgba(139,92,246,.3);border-radius:100px;font-size:13px;font-weight:500;color:var(--accent);margin-bottom:28px;position:relative;z-index:1}
+    .hero-title{font-family:var(--font-h);font-size:clamp(36px,6vw,80px);font-weight:700;line-height:1.05;letter-spacing:-.03em;margin-bottom:20px;position:relative;z-index:1}
+    .title-grad{background:linear-gradient(135deg,var(--accent),#C4B5FD,#A78BFA);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:clamp(15px,2vw,19px);color:var(--muted);max-width:600px;margin:0 auto 40px;position:relative;z-index:1}
+    .hero-btns{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;position:relative;z-index:1}
+    .btn-p{padding:13px 26px;background:var(--accent);color:#fff;border-radius:var(--r-sm);font-weight:700;font-size:14px;transition:all var(--t);display:inline-flex;align-items:center;gap:8px}
+    .btn-p:hover{background:#7C3AED;transform:translateY(-2px);box-shadow:0 8px 28px rgba(139,92,246,.3)}
+    .btn-s{padding:13px 26px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:var(--r-sm);font-weight:600;font-size:14px;transition:all var(--t);display:inline-flex;align-items:center;gap:8px}
+    .btn-s:hover{border-color:rgba(139,92,246,.4);background:var(--surface-2);transform:translateY(-1px)}
+    .stats{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);background:var(--border)}
+    .stat{background:var(--surface);padding:24px;text-align:center}
+    .stat-v{font-family:var(--font-h);font-size:26px;font-weight:700;color:var(--accent);display:block;margin-bottom:4px}
+    .stat-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+    .s{padding:80px 0}.container{max-width:1200px;margin:0 auto;padding:0 24px}
+    .s-head{text-align:center;margin-bottom:52px}
+    .eyebrow{display:inline-block;font-size:11px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}
+    .s-title{font-family:var(--font-h);font-size:clamp(26px,4vw,42px);font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+    .s-desc{font-size:16px;color:var(--muted);max-width:520px;margin:0 auto}
+    /* THREE MODES */
+    .modes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    @media(max-width:768px){.modes-grid{grid-template-columns:1fr}.stats-row{grid-template-columns:repeat(2,1fr)}.hero-btns{flex-direction:column;align-items:center}}
+    .mode{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all var(--t);position:relative;overflow:hidden}
+    .mode:hover{border-color:rgba(139,92,246,.3);transform:translateY(-2px)}
+    .mode-num{font-family:var(--font-m);font-size:11px;color:var(--dim);margin-bottom:12px}
+    .mode-key{font-family:var(--font-m);font-size:18px;font-weight:500;color:var(--accent);margin-bottom:8px;display:block}
+    .mode-title{font-family:var(--font-h);font-size:19px;font-weight:700;margin-bottom:10px}
+    .mode-desc{font-size:14px;color:var(--muted);margin-bottom:16px}
+    .mode-example{background:#0A0E1A;border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;font-family:var(--font-m);font-size:12px;line-height:1.7}
+    .feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .feat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all var(--t)}
+    .feat-card:hover{border-color:rgba(139,92,246,.3);transform:translateY(-2px)}
+    .feat-icon{width:44px;height:44px;background:var(--accent-glow);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .feat-icon svg{width:22px;height:22px;stroke:var(--accent)}
+    .feat-title{font-family:var(--font-h);font-size:17px;font-weight:600;margin-bottom:8px}
+    .feat-desc{font-size:14px;color:var(--muted)}
+    /* COMPANIES */
+    .companies{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+    .company{padding:8px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);font-size:13px;font-weight:500;color:var(--muted)}
+    /* MODELS TABLE */
+    .models-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+    .model-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:18px;transition:all var(--t)}
+    .model-card:hover{border-color:rgba(139,92,246,.3)}
+    .model-name{font-family:var(--font-h);font-size:14px;font-weight:600;margin-bottom:3px}
+    .model-use{font-size:12px;color:var(--muted)}
+    .model-badge{display:inline-block;margin-top:8px;padding:2px 8px;border-radius:100px;font-size:10px;font-weight:600;border:1px solid rgba(139,92,246,.3);color:var(--accent)}
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:40px 24px;text-align:center}
+    .foot-brand{font-family:var(--font-h);font-size:18px;font-weight:700;margin-bottom:8px}
+    .foot-desc{color:var(--muted);font-size:14px;margin-bottom:16px}
+    .foot-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+    .foot-links a{font-size:13px;color:var(--muted);transition:color var(--t)}.foot-links a:hover{color:var(--accent)}
+    .foot-copy{font-size:12px;color:var(--dim)}
+    .scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),#C4B5FD);z-index:200;width:0}
+    .fade{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .5s ease}.fade.in{opacity:1;transform:none}
+    .p{color:var(--accent)}.cmd{color:var(--text)}.comment{color:#546E7A}.ok{color:var(--green)}.info{color:#3B82F6}
+  </style>
+</head>
+<body>
+  <div class="scroll-bar" id="sb"></div>
+  <nav class="nav">
+    <a href="../index.html" class="nav-back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>All Tools</a>
+    <div class="nav-brand"><div class="brand-dot"></div>Cursor AI</div>
+    <span class="nav-badge">by Anysphere</span>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-tag">VS Code-Based · Tab + Cmd+K + Composer · BugBot · Cloud Agents</div>
+    <h1 class="hero-title">
+      <span style="display:block">Cursor</span>
+      <span class="title-grad">The AI IDE That</span>
+      <span style="display:block">Changed Everything</span>
+    </h1>
+    <p class="hero-desc">From Fortune 500 companies to indie hackers — Cursor's three-mode AI (Tab, Cmd+K, Composer) plus BugBot PR review and cloud agents makes it the most versatile AI IDE in 2026.</p>
+    <div class="hero-btns">
+      <a href="https://cursor.com" class="btn-p" target="_blank" rel="noopener noreferrer"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/></svg>Get Cursor</a>
+      <a href="./README.md" class="btn-s"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>View README</a>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="stats-row">
+      <div class="stat"><span class="stat-v">40K+</span><span class="stat-l">Stripe Engineers</span></div>
+      <div class="stat"><span class="stat-v">3</span><span class="stat-l">Interaction Modes</span></div>
+      <div class="stat"><span class="stat-v">$20</span><span class="stat-l">Pro / Month</span></div>
+      <div class="stat"><span class="stat-v">Fortune 500</span><span class="stat-l">Trusted By</span></div>
+    </div>
+  </div>
+
+  <!-- THREE MODES -->
+  <section class="s">
+    <div class="container">
+      <div class="s-head fade">
+        <div class="eyebrow">Three Modes</div>
+        <h2 class="s-title">Every Interaction, Covered</h2>
+        <p class="s-desc">Cursor's power comes from three distinct modes — each optimized for a different level of AI involvement.</p>
+      </div>
+      <div class="modes-grid fade">
+        <div class="mode">
+          <div class="mode-num">Mode 01</div>
+          <span class="mode-key">⇥ Tab</span>
+          <div class="mode-title">Predictive Autocomplete</div>
+          <p class="mode-desc">Predict your next action — not just words, but entire edits, imports, refactors — with sub-50ms speed.</p>
+          <div class="mode-example">
+            <div style="color:#546E7A"># Type: function getU</div>
+            <div style="color:#C3E88D">getUserById(id: string): Promise&lt;User&gt;</div>
+            <div style="color:#546E7A"># Tab again → full implementation</div>
+          </div>
+        </div>
+        <div class="mode">
+          <div class="mode-num">Mode 02</div>
+          <span class="mode-key">⌘K Inline Edit</span>
+          <div class="mode-title">Natural Language Edits</div>
+          <p class="mode-desc">Select code, press Cmd+K, describe the change — targeted refactoring without agent overhead.</p>
+          <div class="mode-example">
+            <div style="color:#546E7A"># Select function, Cmd+K:</div>
+            <div style="color:#C3E88D">"add zod input validation"</div>
+            <div style="color:#82AAFF">"refactor to async/await"</div>
+            <div style="color:#C3E88D">"handle null user case"</div>
+          </div>
+        </div>
+        <div class="mode">
+          <div class="mode-num">Mode 03</div>
+          <span class="mode-key">⌘I Composer</span>
+          <div class="mode-title">Full Agent Mode</div>
+          <p class="mode-desc">Give a complex goal. Composer plans, codes across multiple files, runs tests, and reports results.</p>
+          <div class="mode-example">
+            <div style="color:#C3E88D">"Build real-time collab</div>
+            <div style="color:#C3E88D"> with WebSocket support,</div>
+            <div style="color:#C3E88D"> add tests, update docs"</div>
+            <div style="color:#22C55E">→ 5 files modified, 23 tests ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="s" style="background:var(--surface)">
+    <div class="container">
+      <div class="s-head fade">
+        <div class="eyebrow">Key Features</div>
+        <h2 class="s-title">More Than Just an IDE</h2>
+      </div>
+      <div class="feat-grid fade">
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+          <div class="feat-title">BugBot PR Review</div>
+          <p class="feat-desc">Automated PR review with bug detection, logic errors, and fix suggestions. 60M+ reviews across the ecosystem.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div>
+          <div class="feat-title">Cloud Agents</div>
+          <p class="feat-desc">Agents run autonomously in the background. Delegate overnight tasks, check results in the morning.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></div>
+          <div class="feat-title">Codebase Indexing</div>
+          <p class="feat-desc">Semantic understanding of your entire repo. Ask "where are colors defined?" and get precise answers.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg></div>
+          <div class="feat-title">.cursor/rules/</div>
+          <p class="feat-desc">Project-specific AI rules for TypeScript, testing, APIs. Shareable with your team via git.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="feat-title">Slack Integration</div>
+          <p class="feat-desc">@cursor in any Slack channel. It reads context, creates PRs, fixes bugs, and posts results without leaving Slack.</p>
+        </div>
+        <div class="feat-card">
+          <div class="feat-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3"/></svg></div>
+          <div class="feat-title">MCP Apps Marketplace</div>
+          <p class="feat-desc">Team Marketplaces for Plugins (March 2026). Install tools directly in Cursor. Automations trigger on events.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUSTED BY -->
+  <section class="s">
+    <div class="container">
+      <div class="s-head fade">
+        <div class="eyebrow">Trusted By</div>
+        <h2 class="s-title">The World's Best Teams</h2>
+        <p class="s-desc">From YC startups to Fortune 500 enterprises — Cursor scales to every team.</p>
+      </div>
+      <div class="companies fade">
+        <div class="company">Stripe (40K+ engineers)</div>
+        <div class="company">NVIDIA (Jensen Huang)</div>
+        <div class="company">Figma</div>
+        <div class="company">Adobe</div>
+        <div class="company">Ramp</div>
+        <div class="company">OpenAI</div>
+        <div class="company">Linear</div>
+        <div class="company">Salesforce (20K+ engineers)</div>
+        <div class="company">Y Combinator</div>
+        <div class="company">Fortune 500</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODEL GUIDE -->
+  <section class="s" style="background:var(--surface)">
+    <div class="container">
+      <div class="s-head fade">
+        <div class="eyebrow">Model Strategy</div>
+        <h2 class="s-title">The PLAN → EXECUTE Pattern</h2>
+        <p class="s-desc">Use expensive models for planning, cheaper models for execution — maximize quality, minimize cost.</p>
+      </div>
+      <div class="models-grid fade">
+        <div class="model-card">
+          <div class="model-name">Opus 4.6</div>
+          <div class="model-use">Architecture & Planning</div>
+          <div class="model-badge">PLAN</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Sonnet 4.6</div>
+          <div class="model-use">Implementation</div>
+          <div class="model-badge">EXECUTE</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Gemini 3 Pro</div>
+          <div class="model-use">Large Context (1M tokens)</div>
+          <div class="model-badge">CONTEXT</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Composer 1.5</div>
+          <div class="model-use">Cursor's Native Agent</div>
+          <div class="model-badge">AGENT</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Cursor Tab</div>
+          <div class="model-use">Predictive Autocomplete</div>
+          <div class="model-badge">AUTOCOMPLETE</div>
+        </div>
+        <div class="model-card">
+          <div class="model-name">AUTO Mode</div>
+          <div class="model-use">After Premium Limit</div>
+          <div class="model-badge">FALLBACK</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-brand" style="color:var(--accent)">Cursor AI</div>
+    <p class="foot-desc">Tab + Cmd+K + Composer + BugBot + Cloud Agents. The IDE that scales from indie to Fortune 500.</p>
+    <nav class="foot-links">
+      <a href="https://cursor.com" target="_blank" rel="noopener noreferrer">Website</a>
+      <a href="https://cursor.com/changelog" target="_blank" rel="noopener noreferrer">Changelog</a>
+      <a href="./README.md">README</a>
+      <a href="../index.html">All Tools</a>
+    </nav>
+    <p class="foot-copy">AI-ASSISTANT-CURSOR · Showcase by mk-knight23 · March 2026</p>
+  </footer>
+
+  <script>
+    const sb=document.getElementById('sb');
+    window.addEventListener('scroll',()=>{sb.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight)*100)+'%'},{passive:true});
+    const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*50);obs.unobserve(e.target)}}),{threshold:.1});
+    document.querySelectorAll('.fade').forEach(el=>obs.observe(el));
+  </script>
+</body>
+</html>
