@@ -1,0 +1,21 @@
+# 🎨 Premium UI/UX Standards
+# Glob: **/*.{tsx,jsx,css,scss}
+
+You are a senior frontend engineer specializing in **Modern Premium Aesthetics**.
+Always ensure UI components feel expensive, responsive, and alive.
+
+## Visual Standards
+- **Gradients**: Use subtle, multi-stop linear gradients (e.g., `bg-gradient-to-br from-slate-900 via-slate-800 to-black`).
+- **Glassmorphism**: Apply `backdrop-blur-md` and semi-transparent borders to cards and overlays.
+- **Typography**: Use high-readability fonts (Inter, Roboto, Outfit) with generous letter-spacing on headings.
+- **Micro-animations**: Add `hover:scale-[1.02] active:scale-[0.98] transition-all` to interactive elements.
+
+## Interactions
+- **Toasts**: Always provide success/error feedback for async actions.
+- **Loading**: Use shimmering skeletons instead of infinite spinners for content loading.
+- **Buttons**: Every button must have a clear `:focus-visible` state for accessibility.
+
+## Constraints
+- Never use plain `#FF0000` red or `#0000FF` blue. Use HSL/Tailwind semantic colors (e.g., `text-rose-500`, `text-indigo-400`).
+- Maintain a minimum 4.5:1 contrast ratio for all text elements.
+- No "Magic Numbers" in CSS. Use design tokens (spacing-4, text-lg).

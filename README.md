@@ -1,52 +1,80 @@
-# 🚀 AI-ASSISTANT-CURSOR (Collective Production Edition)
+# 🔮 AI-ASSISTANT-CURSOR
 
-## 💎 Overview
-Fully production-grade implementation of AI-ASSISTANT-CURSOR, refactored by the **69-Agent Opencode Collective**.
+![Cursor](https://img.shields.io/badge/Cursor-Anysphere-8B5CF6?style=for-the-badge&logo=cursor)
+![Features](https://img.shields.io/badge/Release-April_2026-22C55E?style=for-the-badge)
+![Status](https://img.shields.io/badge/Ecosystem-Active-blue?style=for-the-badge)
+![Intelligence](https://img.shields.io/badge/Intelligence-Composer_2.0-8B5CF6?style=for-the-badge)
 
-## 🛡️ Trust & Compliance
-- **CI/CD**: Automated GitHub Actions with Gitleaks security scans.
-- **Security**: Standardized [SECURITY.md](SECURITY.md) protocol.
-- **Design**: Opencode Premium Design Tokens integrated.
+> **"The IDE that doesn't just autocomplete — it plans and executes."**
 
-## 🏁 48-Hour Roadmap
-1. Initialize infrastructure via `.github/workflows`.
-2. Set your secrets in GitHub Environment settings.
-3. Deploy to production via Vercel/Docker.
-
-![Cursor](https://img.shields.io/badge/Cursor-Anysphere-8B5CF6?style=for-the-badge)
-![Users](https://img.shields.io/badge/Used_By-Fortune_500-22C55E?style=for-the-badge)
-![Version](https://img.shields.io/badge/Version-2.6_March_2026-0F172A?style=for-the-badge)
-![Platform](https://img.shields.io/badge/Platform-VS_Code_Based-blue?style=for-the-badge)
-
-> **"Adoption went from single digits to over 80% — all the best builders were using Cursor."** — Diana Hu, Y Combinator
-
-Cursor is the AI IDE that changed how the world's best developers work. Built on VS Code, it combines predictive Tab autocomplete, natural language inline edits (Cmd+K), and full autonomous agents (Composer) — trusted by 40,000+ Stripe engineers, all of NVIDIA, Figma, Adobe, Ramp, and OpenAI.
+This repository is a production-grade implementation of the **Cursor IDE** ecosystem. It provides the rules, configurations, and specialized agents required to leverage Cursor's advanced agentic capabilities: **Composer 2.0**, **Background Agents**, and **BugBot**.
 
 ---
 
-## Table of Contents
+## 🏛️ Ecosystem Overview
 
-- [What is Cursor?](#what-is-cursor)
-- [Three Interaction Modes](#three-interaction-modes)
-- [Key Features](#key-features)
-- [How I Use It](#how-i-use-it-personally)
-- [Quick Start](#quick-start)
-- [Rules & Configuration](#rules--configuration)
-- [Model Selection Guide](#model-selection-guide)
-- [Workflows](#workflows)
-- [Resources](#resources)
+| Capability | Feature | Description |
+| :--- | :--- | :--- |
+| **Composer 2** | `Cmd+I` | Multi-file, architectural-level agentic editing. |
+| **Background Agents** | `Cloud Execution` | Asynchronous, parallel task execution in sandboxed Ubuntu environments. |
+| **BugBot** | `Automated Review` | AI-powered PR reviewer that enforces project-specific `.cursorrules`. |
+| **Rules** | `.cursorrules` | Project-wide context injection and behavioral constraints. |
 
 ---
 
-## What is Cursor?
+## 🚀 Quick Start
 
-Cursor is a **VS Code-based AI IDE** that doesn't just autocomplete — it thinks. Three distinct interaction modes cover every coding scenario from micro-edits to full feature builds:
+1. **Install Cursor**: [cursor.com](https://cursor.com) (Ensure you are on version 0.45+).
+2. **Apply Rules**: Copy the provided [.cursorrules](.cursorrules) to your root directory.
+3. **Initialize Setup**: Run `./scripts/setup.sh` to configure MCP servers.
+4. **Trigger Composer**: Press `Cmd+I` and describe your feature.
 
-1. **Tab** — Predict your next action with striking speed and precision
-2. **Cmd+K** — Make targeted inline edits with natural language
-3. **Composer/Agent** — Full autonomous task execution
+---
 
-Cursor understands your entire codebase semantically, reviews your PRs (BugBot), runs agents in the cloud (background autonomous tasks), and integrates with Slack and GitHub.
+## 📂 Repository Structure
+
+- [**agents/**](file:///Users/mkazi/ALL-REPO/4-AI-ASSISTANT/AI-ASSISTANT-CURSOR/agents) — specialized profiles for backend, test-writing, and rapid prototyping.
+- [**skills/**](file:///Users/mkazi/ALL-REPO/4-AI-ASSISTANT/AI-ASSISTANT-CURSOR/skills) — logic for creating new rules, migrating to skills, and updating settings.
+- [**configs/**](file:///Users/mkazi/ALL-REPO/4-AI-ASSISTANT/AI-ASSISTANT-CURSOR/configs) — `mcp.json` templates for seamless tool integration.
+- [**examples/**](file:///Users/mkazi/ALL-REPO/4-AI-ASSISTANT/AI-ASSISTANT-CURSOR/examples) — a library of high-quality `.cursorrules` for different stacks.
+
+---
+
+## 🎯 Strategic Workflows
+
+### 1. The "Background Refactor"
+Dispatch a **Background Agent** to handle low-level refactors or unit tests while you continue building high-level features in the main thread.
+- **Trigger**: "Refactor this module in the background"
+- **Result**: A pull request ready for review.
+
+### 2. BugBot CI Enforcement
+BugBot acts as your 24/7 reviewer. It uses the rules defined in this repo to ensure no PR merges without adhering to your specific architectural patterns.
+
+### 3. Composer-First Prototyping
+Use Composer to scaffold entire features (models, controllers, routes, views) in one prompt by providing the architecture in `CLAUDE.md`.
+
+---
+
+## 🛠️ Configuration
+
+Configure your **Background Agents** in `configs/agents-config.json`:
+```json
+{
+  "defaultEnv": "ubuntu-24.04-stable",
+  "concurrencyLimit": 5,
+  "autoSubmitPR": true
+}
+```
+
+---
+
+## 📜 Resources
+- [Official Cursor Docs](https://docs.cursor.com)
+- [Cursor Community Forum](https://forum.cursor.com)
+- [Best .cursorrules Catalog](docs/SKILL_ANATOMY.md)
+
+---
+*Maintained by the mk-knight23 collective. Last updated: April 2026.*
 
 ---
 

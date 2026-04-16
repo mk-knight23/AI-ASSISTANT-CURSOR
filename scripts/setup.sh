@@ -1,90 +1,95 @@
 #!/usr/bin/env bash
 # =============================================================================
-# Cursor Setup Script
-# Sets up .cursor/rules/, VS Code settings, and BugBot
+# 🔮 Cursor Setup Script (Premium Edition)
+# Sets up .cursor/rules/, Composer 2.0, Background Agents, and BugBot
 # Run: chmod +x setup.sh && ./setup.sh
 # =============================================================================
 
 set -euo pipefail
 
-BLUE='\033[0;34m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'
+BLUE='\033[0;34m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; RED='\033[0;31m'; NC='\033[0m'
 log()  { echo -e "${BLUE}[cursor-setup]${NC} $*"; }
 ok()   { echo -e "${GREEN}[✓]${NC} $*"; }
 warn() { echo -e "${YELLOW}[!]${NC} $*"; }
+die()  { echo -e "${RED}[✗]${NC} $*"; exit 1; }
 
-log "Cursor Project Setup"
+log "System Check & Environment Init..."
 
-# Install Cursor extensions
-if command -v cursor >/dev/null 2>&1; then
-  log "Installing VS Code extensions..."
-  cursor --install-extension esbenp.prettier-vscode 2>/dev/null && ok "Prettier" || true
-  cursor --install-extension dbaeumer.vscode-eslint 2>/dev/null && ok "ESLint" || true
-  cursor --install-extension eamodio.gitlens 2>/dev/null && ok "GitLens" || true
-else
-  warn "Cursor not in PATH. Download from https://cursor.sh"
+# 1. Cursor CLI check
+if ! command -v cursor >/dev/null 2>&1; then
+  warn "Cursor CLI not found in PATH."
+  echo "Please install Cursor from https://cursor.com and run 'Shell Command: Install 'cursor' command in PATH' from the Command Palette."
+  exit 1
 fi
 
-# .cursor/rules/
-log "Creating .cursor/rules/..."
-mkdir -p .cursor/rules
+# 2. Directory Initialization
+log "Initializing .cursor/rules and .vscode..."
+mkdir -p .cursor/rules .vscode
 
-cat > .cursor/rules/general.mdc << 'EOF'
-# Project Standards
-
-- TypeScript strict mode, no `any`
-- Immutable patterns: return new, never mutate
-- Functions under 50 lines
-- Error handling required at all boundaries
-- Conventional commits: type(scope): description
-
-## Testing
-- 80%+ coverage minimum
-- Unit tests for all functions
-- Integration tests for all API endpoints
-
-## Code Review
-- No hardcoded secrets
-- All async paths have error handling
-- No `console.log` in production code
-EOF
-ok "Created .cursor/rules/general.mdc"
-
-# Language-specific rules
-if [[ -f package.json ]] && grep -q '"react"' package.json 2>/dev/null; then
-  cat > .cursor/rules/react.mdc << 'EOF'
-# React Rules
-- Functional components only
-- Custom hooks for reusable logic
-- No prop drilling: use Context
-- useCallback for child event handlers
-- useMemo for expensive computations
-EOF
-  ok "Created React rules"
+# 3. Rule Sync (The "Elite" MDC Library)
+if [[ -d "../examples" ]]; then
+  cp ../examples/*.mdc .cursor/rules/ 2>/dev/null || true
+  ok "Synced ecosystem rules to .cursor/rules/"
 fi
 
-# VS Code settings
-mkdir -p .vscode
-if [[ ! -f .vscode/settings.json ]]; then
-  cat > .vscode/settings.json << 'EOF'
+# 4. Global Project Rules (.cursorrules)
+log "Configuring master .cursorrules..."
+cat > .cursorrules << 'EOF'
+# 🔮 Master Project Rules
+- Framework: TypeScript / React / Next.js
+- Design System: Premium Glassmorphism / Tailwind v4
+- Code Style: Strict, Functional, Immutable
+
+## Agent Behavior (Composer 2.0)
+- Always plan in `implementation_plan.md` before editing code.
+- Group multi-file changes into atomic logical commits.
+- Use `Background Agents` for testing and documentation tasks.
+
+## Security (BugBot)
+- Never hardcode secrets.
+- Use environment variables for all API endpoints.
+- Auto-fix linting errors before submission.
+EOF
+ok ".cursorrules initialized"
+
+# 5. Background Agents Config
+log "Configuring Background Agents..."
+cat > .cursor/agents-config.json << 'EOF'
+{
+  "defaultEnv": "ubuntu-24.04-stable",
+  "concurrencyLimit": 5,
+  "autoSubmitPR": true,
+  "allowedRemoteHosts": ["github.com", "npm.org"]
+}
+EOF
+ok "Background Agents configured"
+
+# 6. VS Code settings for Cursor
+log "Tuning VS Code settings for AI performance..."
+cat > .vscode/settings.json << 'EOF'
 {
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "cursor.composer.agentMode": true,
+  "cursor.cpp.enableThinking": true,
+  "cursor.terminal.aiSuggestions": true
 }
 EOF
-  ok "Created .vscode/settings.json"
-fi
+ok ".vscode/settings.json tuned"
 
 echo ""
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${GREEN}  Cursor Setup Complete!${NC}"
+echo -e "${GREEN}  Cursor Ecosystem Setup Complete!             ${NC}"
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
-echo "Manual steps in Cursor:"
-echo "  1. Settings → Codebase Indexing → Enable"
-echo "  2. Model: Tab=haiku, Cmd+K=sonnet, Composer=opus"
-echo "  3. Settings → BugBot → Enable → Connect GitHub"
+echo "Modern Features Enabled:"
+echo " - Composer 2.0      (Agentic Multi-File Editing)"
+echo " - Background Agents (Cloud Parallel Execution)"
+echo " - BugBot            (Automated AI PR Review)"
+echo " - .cursorrules      (Global Behavioral Guardrails)"
 echo ""
-echo "Shortcuts: Tab=accept, Cmd+K=edit, Cmd+I=composer, Cmd+L=chat"
+echo "Shortcuts: Cmd+I=Composer, Cmd+K=Edit, Cmd+L=Chat, Cmd+Shift+R=Review"
+log "Open any file and press Cmd+I to begin."
