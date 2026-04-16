@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CURSOR | Kazi Musharraf</title>
-  <meta name="description" content="AI-ASSISTANT-CURSOR: Premium semantic code editing ecosystem. Developed by Kazi Musharraf.">
-  
+  <meta name="description"
+    content="AI-ASSISTANT-CURSOR: Premium semantic code editing ecosystem. Developed by Kazi Musharraf.">
+
   <!-- UI UX Pro Max: Neutral / Mural Standard CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono&display=swap"
+    rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -35,7 +39,12 @@
   </script>
 
   <style>
-    body { background-color: #FFF7ED; color: #7C2D12; overflow-x: hidden; }
+    body {
+      background-color: #FFF7ED;
+      color: #7C2D12;
+      overflow-x: hidden;
+    }
+
     .glass-mural {
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(20px);
@@ -43,19 +52,38 @@
       border: 1px solid rgba(251, 146, 60, 0.1);
       box-shadow: 0 10px 40px rgba(124, 45, 18, 0.03);
     }
+
     .mural-gradient {
       background: linear-gradient(135deg, #FB923C 0%, #FDBA74 100%);
     }
+
     .pattern-dots {
       background-image: radial-gradient(#FB923C 0.5px, transparent 0.5px);
       background-size: 24px 24px;
       opacity: 0.1;
     }
-    .hover-lift { transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1); }
-    .hover-lift:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(124, 45, 18, 0.08); }
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: #FFF7ED; }
-    ::-webkit-scrollbar-thumb { background: #FB923C; border-radius: 10px; }
+
+    .hover-lift {
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(124, 45, 18, 0.08);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #FFF7ED;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #FB923C;
+      border-radius: 10px;
+    }
   </style>
 </head>
 
@@ -64,7 +92,8 @@
   <div class="fixed inset-0 pattern-dots -z-10"></div>
 
   <!-- ─── NAV ─── -->
-  <nav class="fixed top-8 left-1/2 -translate-x-1/2 w-[85%] max-w-7xl z-50 glass-mural rounded-[2.5rem] px-10 py-5 flex items-center justify-between">
+  <nav
+    class="fixed top-8 left-1/2 -translate-x-1/2 w-[85%] max-w-7xl z-50 glass-mural rounded-[2.5rem] px-10 py-5 flex items-center justify-between">
     <div class="flex items-center gap-4">
       <div class="w-10 h-10 rounded-2xl mural-gradient flex items-center justify-center shadow-lg shadow-orange-200">
         <i data-lucide="edit-3" class="text-white w-5 h-5"></i>
@@ -72,7 +101,8 @@
       <span class="font-heading font-black text-2xl tracking-tighter text-mural-deep uppercase">Cursor</span>
     </div>
 
-    <div class="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-mural-deep/40">
+    <div
+      class="hidden lg:flex items-center gap-12 text-[10px] font-black uppercase tracking-[0.4em] text-mural-deep/40">
       <a href="#editor" class="hover:text-mural-primary transition-all">Editor</a>
       <a href="#rules" class="hover:text-mural-primary transition-all">Rules</a>
       <a href="#setup" class="hover:text-mural-primary transition-all">Setup</a>
@@ -83,7 +113,8 @@
         <p class="text-[8px] font-mono text-mural-deep/30 uppercase tracking-[0.2em] leading-none">Curated By</p>
         <p class="text-xs font-heading font-black text-mural-deep uppercase tracking-tighter">Kazi Musharraf</p>
       </div>
-      <a href="https://github.com/mk-knight23/AI-ASSISTANT-CURSOR" target="_blank" class="w-12 h-12 glass-mural rounded-full flex items-center justify-center hover:bg-orange-100 transition-all border border-orange-100">
+      <a href="https://github.com/mk-knight23/AI-ASSISTANT-CURSOR" target="_blank"
+        class="w-12 h-12 glass-mural rounded-full flex items-center justify-center hover:bg-orange-100 transition-all border border-orange-100">
         <i data-lucide="github" class="w-6 h-6 text-mural-deep"></i>
       </a>
     </div>
@@ -93,33 +124,155 @@
   <section class="pt-64 pb-32 px-6">
     <div class="max-w-5xl mx-auto flex flex-col items-center text-center">
       <div class="p-2 border border-orange-100 rounded-2xl mb-12 bg-white/50">
-        <div class="px-6 py-2 bg-mural-base rounded-xl text-[10px] font-black text-mural-primary uppercase tracking-[0.4em]">Semantic Engine V4</div>
+        <div
+          class="px-6 py-2 bg-mural-base rounded-xl text-[10px] font-black text-mural-primary uppercase tracking-[0.4em]">
+          Semantic Engine V4</div>
       </div>
-      
-      <h1 class="text-6xl md:text-[8rem] font-heading font-black text-mural-deep leading-[0.85] tracking-tighter uppercase mb-12">
-        Artisanal <br> <span class="italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-600">Development.</span>
-      </h1>
-      
-      <p class="max-w-2xl text-xl md:text-2xl text-mural-deep/50 font-light leading-relaxed mb-20">
-        A premium semantic coding experience that prioritizes clarity, performance, and craftsmanship. Masterfully tuned for the modern engineer by <span class="text-mural-deep font-bold border-b-2 border-mural-primary">Kazi Musharraf</span>.
-      </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-10 mb-32">
-        <a href="#setup" class="mural-gradient text-white px-14 py-7 rounded-[2rem] font-black text-xl hover:scale-105 transition-all shadow-xl shadow-orange-300 uppercase italic">
-          Start Editing
+      <h1
+        class="text-6xl md:text-[8rem] font-heading font-black text-mural-deep leading-[0.85] tracking-tighter uppercase mb-12">
+        Artisanal <br> <span
+          class="italic text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-600">Development.</span>
+      </h1>
+
+      <p class="max-w-2xl text-xl md:text-2xl text-mural-deep/50 font-light leading-relaxed mb-20">
+        A premium semantic coding experience that prioritizes clarity, performance, and craftsmanship. Masterfully tuned
+        for the modern engineer by <span class="text-mural-deep font-bold border-b-2 border-mural-primary">Kazi
+          Mushar      <div class="flex flex-wrap items-center justify-center gap-10 mb-32">
+        <a href="#setup" class="mural-gradient text-white px-14 py-7 rounded-full font-black text-2xl hover:scale-105 transition-all shadow-xl shadow-orange-300 uppercase italic">
+          Initialize Hub
         </a>
-        <a href="#editor" class="text-mural-deep font-black text-xl flex items-center gap-4 group italic px-6">
-          Explore Rules <i data-lucide="terminal" class="w-6 h-6 group-hover:rotate-12 transition-transform"></i>
+        <a href="#composer" class="text-mural-deep font-black text-xl flex items-center gap-4 group italic px-6">
+          View Composer 2.0 <i data-lucide="arrow-right" class="w-8 h-8 group-hover:translate-x-2 transition-transform"></i>
         </a>
       </div>
     </div>
   </section>
 
+  <!-- ─── COMPOSER 2.0 BENCHMARKS (NEW) ─── -->
+  <section id="composer" class="py-32 px-6 bg-slate-50/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 text-left">
+        <div class="max-w-2xl">
+          <h2 class="text-5xl md:text-7xl font-heading font-black text-mural-deep mb-8 tracking-tighter uppercase italic leading-none">
+            Composer <br> <span class="text-mural-primary">Performance.</span>
+          </h2>
+          <p class="text-xl text-mural-deep/40 font-light leading-relaxed italic">
+            Released March 19, 2026, Composer 2.0 sets the gold standard for multi-file agentic editing, outperforming all competitors on Terminal-Bench 2.0.
+          </p>
+        </div>
+        <div class="flex gap-4">
+          <div class="px-8 py-5 glass-mural rounded-3xl border border-mural-primary/10">
+            <p class="text-[10px] font-mono font-black text-mural-primary uppercase tracking-widest mb-2">SWE-BENCH ML</p>
+            <p class="text-2xl font-heading font-black text-mural-deep">Top 1%</p>
+          </div>
+          <div class="px-8 py-5 glass-mural rounded-3xl border border-mural-primary/10">
+            <p class="text-[10px] font-mono font-black text-mural-primary uppercase tracking-widest mb-2">FILE PARITY</p>
+            <p class="text-2xl font-heading font-black text-mural-deep">100%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Technical Spec -->
+        <div class="glass-mural p-12 rounded-[4rem] border border-orange-100 hover:border-mural-primary/20 transition-all">
+          <h4 class="text-2xl font-heading font-black text-mural-deep mb-8 tracking-tighter uppercase italic">Multi-File Sync Engine</h4>
+          <p class="text-sm text-mural-deep/40 text-sm font-light leading-relaxed mb-10 italic">
+            The sync engine maintains a global vector graph of your codebase, ensuring that an edit in the `/models` layer is instantly propagated to `/controllers` and `/types` with semantic consistency.
+          </p>
+          <div class="space-y-6">
+            <div class="flex justify-between items-end">
+              <span class="text-[10px] uppercase font-black tracking-widest text-mural-deep/30">Reasoning Depth</span>
+              <span class="text-xs font-mono font-bold text-mural-primary underline decoration-mural-primary/20">MAXIMUM</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="w-[98%] h-full bg-mural-primary"></div>
+            </div>
+          </div>
+        </div>
+        <!-- Tool Spec -->
+        <div class="glass-mural p-12 rounded-[4rem] border border-orange-100 hover:border-mural-primary/20 transition-all">
+          <h4 class="text-2xl font-heading font-black text-mural-deep mb-8 tracking-tighter uppercase italic">Background Autonomy</h4>
+          <p class="text-sm text-mural-deep/40 text-sm font-light leading-relaxed mb-10 italic">
+            Cursor Background Agents run in sandboxed containers, allowing for massive refactors to take place asynchronously while the developer focuses on high-level feature logic.
+          </p>
+          <div class="space-y-6">
+            <div class="flex justify-between items-end">
+              <span class="text-[10px] uppercase font-black tracking-widest text-mural-deep/30">Compute Speed</span>
+              <span class="text-xs font-mono font-bold text-mural-primary underline decoration-mural-primary/20">OPTIMIZED</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+              <div class="w-[95%] h-full bg-mural-primary"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CURSOR 3: THE AGENTS WINDOW (NEW) ─── -->
+  <section id="agents" class="py-32 px-6">
+    <div class="max-w-6xl mx-auto border-t border-slate-100 pt-32">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-32 items-center">
+        <div class="order-2 lg:order-1 relative">
+          <div class="absolute -inset-10 bg-orange-100/20 rounded-full blur-3xl"></div>
+          <div class="relative glass-mural p-12 rounded-[5rem] border border-orange-100">
+            <div class="space-y-8">
+              <div class="flex items-center justify-between border-b border-slate-100 pb-6">
+                <span class="text-[10px] font-black uppercase tracking-[0.2em] text-mural-primary">Agents Workspace</span>
+                <i data-lucide="layout-grid" class="text-orange-200 w-5 h-5"></i>
+              </div>
+              <div class="space-y-4">
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-50 flex items-center justify-between group">
+                  <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
+                    <span class="text-xs font-bold text-mural-deep italic uppercase">Refactor Agent</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-mural-deep/30 uppercase tracking-widest italic group-hover:text-mural-primary transition-colors">Running Logic...</span>
+                </div>
+                <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-50 flex items-center justify-between">
+                  <div class="flex items-center gap-4">
+                    <div class="w-2 h-2 rounded-full bg-slate-200"></div>
+                    <span class="text-xs font-bold text-mural-deep italic uppercase">Security Auditor</span>
+                  </div>
+                  <span class="text-[8px] font-mono text-mural-deep/30 uppercase tracking-widest italic">Pending Review</span>
+                </div>
+              </div>
+              <div class="pt-6 border-t border-slate-50 flex items-center justify-between">
+                <span class="text-[10px] uppercase font-black tracking-widest text-mural-deep/30 italic">Total Active: 02</span>
+                <button class="mural-gradient text-white px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest italic hover:scale-105 transition-all">New Agent</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <div class="text-[10px] font-mono font-black text-mural-primary uppercase tracking-[0.5em] mb-10">Cursor 3 Evolution</div>
+          <h3 class="text-6xl font-heading font-black text-mural-deep mb-12 tracking-tighter uppercase italic leading-none">
+            Universal <br> <span class="text-mural-primary">Workspace.</span>
+          </h3>
+          <p class="text-xl text-mural-deep/40 font-light leading-relaxed mb-16 italic">
+            Launched April 2, 2026, Cursor 3 introduces the **Agents Window**, a multi-repo orchestration layer that allows you to manage parallel agentic missions across local, cloud, and SSH environments simultaneously.
+          </p>
+          <ul class="space-y-8">
+            <li class="flex items-center gap-6 group">
+              <i data-lucide="layers" class="text-mural-primary w-6 h-6 group-hover:rotate-45 transition-transform"></i>
+              <span class="text-sm font-black text-mural-deep uppercase italic tracking-tighter">Multi-Repo Layout Awareness</span>
+            </li>
+            <li class="flex items-center gap-6 group">
+              <i data-lucide="cloud" class="text-mural-primary w-6 h-6 group-hover:scale-110 transition-transform"></i>
+              <span class="text-sm font-black text-mural-deep uppercase italic tracking-tighter">Seamless Cloud-to-Local Handoff</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── MURAL FEATURES ─── -->
-  <section id="editor" class="py-32 px-6">
+  <section id="editor" class="py-32 px-6 bg-white">
     <div class="max-w-7xl mx-auto">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        
         <!-- Feature 1 -->
         <div class="glass-mural p-12 rounded-[3rem] hover-lift border-b-4 border-mural-primary">
           <div class="w-16 h-16 rounded-2xl bg-orange-100 flex items-center justify-center mb-10 text-mural-primary">
@@ -128,7 +281,6 @@
           <h4 class="text-2xl font-heading font-black text-mural-deep mb-6 uppercase italic">Semantic Edit</h4>
           <p class="text-mural-deep/40 text-sm font-light leading-relaxed italic">Direct semantic manipulation of complex codebases with surgical precision.</p>
         </div>
-
         <!-- Feature 2 -->
         <div class="glass-mural p-12 rounded-[3rem] hover-lift border-b-4 border-amber-400">
           <div class="w-16 h-16 rounded-2xl bg-amber-100 flex items-center justify-center mb-10 text-amber-500">
@@ -137,16 +289,42 @@
           <h4 class="text-2xl font-heading font-black text-mural-deep mb-6 uppercase italic">Context Awareness</h4>
           <p class="text-mural-deep/40 text-sm font-light leading-relaxed italic">Deep indexing of your entire repository for instant, logical correlations.</p>
         </div>
-
         <!-- Feature 3 -->
-        <div class="glass-mural p-12 rounded-[3rem] hover-lift border-b-4 border-orange-300 lg:col-span-1 md:col-span-2">
+        <div class="glass-mural p-12 rounded-[3rem] hover-lift border-b-4 border-orange-300">
           <div class="w-16 h-16 rounded-2xl bg-orange-50 flex items-center justify-center mb-10 text-orange-400">
             <i data-lucide="zap" class="w-8 h-8"></i>
           </div>
           <h4 class="text-2xl font-heading font-black text-mural-deep mb-6 uppercase italic">Composer 2.0</h4>
           <p class="text-mural-deep/40 text-sm font-light leading-relaxed italic">Multi-file generation and background agent cycles for high-speed delivery.</p>
         </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ─── HISTORICAL MILESTONES (NEW) ─── -->
+  <section class="py-32 px-6 border-t border-slate-100">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="mb-24">
+        <h3 class="text-5xl font-heading font-black text-mural-deep mb-8 tracking-tighter uppercase italic leading-none md:text-8xl">The <span class="text-mural-primary italic">Journey.</span></h3>
+        <p class="text-mural-deep/20 font-mono text-[9px] font-bold uppercase tracking-[0.5em] italic">From Autocomplete to Agent</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+        <div class="relative group">
+          <div class="text-4xl font-heading font-black text-orange-200 mb-6 group-hover:text-mural-primary transition-colors">Oct 2025</div>
+          <h5 class="text-lg font-black text-mural-deep uppercase italic mb-4">Composer 1.0</h5>
+          <p class="text-xs text-mural-deep/40 font-light leading-relaxed italic">The initial research release of multi-file editing capabilities, revolutionizing IDE-AI interaction.</p>
+        </div>
+        <div class="relative group">
+          <div class="text-4xl font-heading font-black text-orange-200 mb-6 group-hover:text-mural-primary transition-colors">Mar 2026</div>
+          <h5 class="text-lg font-black text-mural-deep uppercase italic mb-4">Composer 2.0</h5>
+          <p class="text-xs text-mural-deep/40 font-light leading-relaxed italic">SOTA benchmarks on Terminal-Bench 2.0 and the introduction of Background Cloud Agents.</p>
+        </div>
+        <div class="relative group">
+          <div class="text-4xl font-heading font-black text-orange-200 mb-6 group-hover:text-mural-primary transition-colors">Apr 2026</div>
+          <h5 class="text-lg font-black text-mural-deep uppercase italic mb-4">Cursor 3.0</h5>
+          <p class="text-xs text-mural-deep/40 font-light leading-relaxed italic">The unified Workspace for software agents, featuring the parallel Agents Window and multi-repo support.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -157,8 +335,8 @@
       <div class="lg:w-1/2">
         <h2 class="text-[10px] font-mono font-bold tracking-[0.5em] text-mural-primary uppercase mb-6">Elite Guard</h2>
         <h3 class="text-5xl md:text-7xl font-heading font-black text-mural-deep mb-8 leading-[0.9] uppercase tracking-tighter italic">Rule-Based <br> Governance.</h3>
-        <p class="text-xl text-mural-deep/50 font-light italic mb-12">Strict `.cursorrules` enforcement ensures your agent stays within the architectural guardrails. No drifting. No regressions.</p>
-        
+        <p class="text-xl text-mural-deep/50 font-light italic mb-12">Strict `.cursorrules` enforcement ensures your agent stays within the architectural guardrails. Masterfully curated by Kazi Musharraf.</p>
+
         <div class="p-8 glass-mural rounded-[2rem] border border-orange-100 font-mono text-sm space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-2 h-2 rounded-full bg-mural-primary"></div>
@@ -174,7 +352,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="lg:w-1/2 w-full flex justify-center">
         <div class="w-full max-w-[500px] aspect-square mural-gradient rounded-full p-1 shadow-[0_40px_100px_rgba(251,146,60,0.2)]">
           <div class="w-full h-full bg-white rounded-full flex flex-col items-center justify-center p-12 text-center">
@@ -190,51 +368,65 @@
   <!-- ─── SETUP ─── -->
   <section id="setup" class="py-32 px-6">
     <div class="max-w-4xl mx-auto text-center">
-      <h3 class="text-4xl md:text-7xl font-heading font-black text-mural-deep mb-16 tracking-tighter uppercase italic">Refine Your <span class="text-mural-primary underline decoration-amber-400 decoration-8 underline-offset-[12px]">Workflow.</span></h3>
-      
-      <div class="w-full glass-mural p-5 rounded-[2.5rem] mb-12 flex flex-col md:flex-row items-center gap-6 group overflow-hidden border border-orange-100">
+      <h3 class="text-4xl md:text-7xl font-heading font-black text-mural-deep mb-16 tracking-tighter uppercase italic">
+        Refine Your <span class="text-mural-primary underline decoration-amber-400 decoration-8 underline-offset-[12px]">Workflow.</span>
+      </h3>
+
+      <div class="w-full glass-mural p-5 rounded-[2.5rem] mb-12 flex flex-col md:flex-row items-center gap-6 group overflow-hidden border border-orange-100 relative">
         <div class="absolute inset-0 mural-gradient opacity-0 group-hover:opacity-5 transition-all"></div>
-        <div class="flex-1 font-mono text-xl py-6 px-10 text-mural-deep overflow-x-auto whitespace-nowrap scrollbar-hide">
+        <div class="flex-1 font-mono text-xl py-6 px-10 text-mural-deep overflow-x-auto whitespace-nowrap scrollbar-hide relative z-10">
           cursor --install-extension mk-knight.semantic
         </div>
-        <button class="mural-gradient text-white px-14 py-6 rounded-3xl font-black text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase italic">
+        <button class="mural-gradient text-white px-14 py-6 rounded-3xl font-black text-xl shadow-xl transition-all hover:scale-105 active:scale-95 uppercase italic relative z-10">
           Install
         </button>
       </div>
-
-      <p class="text-[10px] font-black uppercase tracking-[0.5em] text-mural-deep/30">Verified for Cursor v0.45+</p>
+      <p class="text-[10px] font-black uppercase tracking-[0.5em] text-mural-deep/30">Verified for Cursor v3.0+ | Massive Edition</p>
     </div>
   </section>
 
   <!-- ─── FOOTER ─── -->
-  <footer class="py-24 px-6 border-t border-orange-100 bg-white">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-16">
-      <div class="text-center md:text-left">
-        <div class="flex items-center justify-center md:justify-start gap-4 mb-6">
-          <div class="w-12 h-12 rounded-2xl mural-gradient flex items-center justify-center shadow-lg shadow-orange-200"><i data-lucide="edit-3" class="w-6 h-6 text-white"></i></div>
-          <span class="font-heading font-black text-2xl text-mural-deep uppercase tracking-tighter">CURSOR</span>
+  <footer class="py-32 px-10 bg-white border-t border-orange-100 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-start gap-24 relative z-10">
+      <div class="max-w-md">
+        <div class="flex items-center gap-5 mb-10">
+          <div class="w-14 h-14 bg-mural-primary rounded-3xl flex items-center justify-center shadow-2xl rotate-12 rotate-[-12deg] border-4 border-white">
+            <i data-lucide="edit-3" class="text-white w-8 h-8"></i>
+          </div>
+          <span class="font-heading font-black text-4xl tracking-tighter text-mural-deep uppercase italic leading-none">Cursor <span class="text-mural-primary">Hub</span></span>
         </div>
-        <p class="text-[10px] text-mural-deep/30 font-bold uppercase tracking-[0.8em] mb-4">Semantic Mastery Hub</p>
-        <p class="text-xs text-mural-deep/40 font-light max-w-xs italic italic">A premium ecosystem for artisanal software engineering. Designed for precision, crafted for the aesthetic professional.</p>
-      </div>
-
-      <div class="flex flex-col items-center">
-        <div class="flex gap-12 mb-10">
-          <a href="#" class="text-orange-200 hover:text-mural-primary transition-all scale-125"><i data-lucide="twitter" class="w-6 h-6"></i></a>
-          <a href="https://github.com/mk-knight23" class="text-orange-200 hover:text-mural-primary transition-all scale-125"><i data-lucide="github" class="w-6 h-6"></i></a>
-          <a href="#" class="text-orange-200 hover:text-mural-primary transition-all scale-125"><i data-lucide="linkedin" class="w-6 h-6"></i></a>
-        </div>
-        <div class="px-10 py-3 bg-white border border-orange-100 rounded-2xl shadow-sm">
-            <p class="text-[10px] uppercase tracking-[0.8em] font-heading font-black text-mural-deep leading-none">
-              CURATED BY <span class="text-mural-primary italic">KAZI MUSHARRAF</span>
-            </p>
+        <p class="text-[11px] text-mural-deep/40 font-light mb-12 max-w-xs italic uppercase tracking-wider leading-relaxed">
+          The curated semantic ecosystem for frontier-level software engineering. Developed by Anysphere, orchestrated and expanded by Kazi Musharraf to its peak potential.
+        </p>
+        <div class="flex gap-4">
+          <span class="px-6 py-2 bg-slate-50 rounded-full text-[9px] font-black uppercase text-mural-deep/30 tracking-widest border border-slate-100 italic">Core Build: 3.0 Massive</span>
+          <span class="px-6 py-2 bg-orange-50 rounded-full text-[9px] font-black uppercase text-mural-primary tracking-widest border border-orange-100 italic">Tier: Enterprise Artisan</span>
         </div>
       </div>
 
-      <div class="text-[10px] font-mono text-mural-deep/20 text-center md:text-right">
-        &copy; 2026 SEMANTIC_GUILD <br>
-        DESIGN_VERSION_4.0
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-24">
+        <div>
+          <h6 class="text-[10px] font-black uppercase text-mural-primary tracking-[0.4em] mb-10 italic">Intelligence</h6>
+          <ul class="space-y-6 text-xs font-black text-mural-deep/40 uppercase italic tracking-tighter">
+            <li><a href="#composer" class="hover:text-mural-primary transition-colors underline decoration-slate-100 decoration-4 underline-offset-8">Composer 2.0</a></li>
+            <li><a href="#agents" class="hover:text-mural-primary transition-colors">Agents Window</a></li>
+            <li><a href="#" class="hover:text-mural-primary transition-colors">Semantic Search</a></li>
+          </ul>
+        </div>
+        <div>
+          <h6 class="text-[10px] font-black uppercase text-mural-primary tracking-[0.4em] mb-10 italic">Architect</h6>
+          <ul class="space-y-6 text-xs font-black text-mural-deep/40 uppercase italic tracking-tighter">
+            <li class="font-heading text-mural-deep text-lg leading-none">Kazi Musharraf</li>
+            <li class="lowercase text-mural-deep/20">Engineering the next frontier.</li>
+          </ul>
+        </div>
       </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto mt-48 pt-12 border-t border-slate-50 text-center">
+      <p class="text-[9px] font-mono text-mural-deep/10 uppercase tracking-[0.8em] italic">
+        © 2026 Cursor Semantic Core. Global Architectural Parity Verified by Kazi Musharraf.
+      </p>
     </div>
   </footer>
 
@@ -249,10 +441,17 @@
       });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.glass-mural, h1, h3, .hover-lift').forEach(el => {
-      el.classList.add('transition-all', 'duration-[1200ms]', 'opacity-0', 'translate-y-16');
+    document.querySelectorAll('.glass-mural, h1, h2, h3, #composer > div > div, #agents > div, #editor > div > div, .relative.group').forEach(el => {
+      el.classList.add('transition-all', 'duration-[1.5s]', 'opacity-0', 'translate-y-16');
       observer.observe(el);
     });
   </script>
 </body>
+</html>
+y-16');
+      observer.observe(el);
+    });
+  </script>
+</body>
+
 </html>

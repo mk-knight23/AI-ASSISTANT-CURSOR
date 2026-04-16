@@ -11,14 +11,41 @@ This repository is a production-grade implementation of the **Cursor IDE** ecosy
 
 ---
 
-## 🏛️ Ecosystem Overview
+## 🏛️ Semantic Architecture
 
-| Capability | Feature | Description |
+```mermaid
+graph TD
+    User((Kazi Musharraf)) -->|Intent| Comp[Composer 2.0]
+    subgraph Semantic Core
+        Comp -->|Index| Vector[Global Vector Graph]
+        Vector -->|Context| @Docs[External Documentation]
+        Comp -->|Action| Agent[Background Agents]
+        Agent -->|Parity| Files[Multi-File Sync]
+    end
+    Files -->|Refactor| Hub[Spectrum Ecosystem]
+```
+
+---
+
+## 💎 Core Research & Features
+
+According to the Cursor 3.0 (April 2026) release specifications:
+
+| Feature | Category | Description |
 | :--- | :--- | :--- |
-| **Composer 2** | `Cmd+I` | Multi-file, architectural-level agentic editing. |
-| **Background Agents** | `Cloud Execution` | Asynchronous, parallel task execution in sandboxed Ubuntu environments. |
-| **BugBot** | `Automated Review` | AI-powered PR reviewer that enforces project-specific `.cursorrules`. |
-| **Rules** | `.cursorrules` | Project-wide context injection and behavioral constraints. |
+| **Composer 2.0** | Agentic Action | Released Mar 2026. High-fidelity multi-file editing with 100% parity benchmarks. |
+| **Agents Window** | Orchestration | New in v3.0. A central hub for managing parallel missions across local and cloud environments. |
+| **@Docs Injection** | Context | Native ability to "learn" new documentation by pointing the agent to any URL. |
+| **Custom Rules** | Governance | Strict `.cursorrules` enforcement to prevent architectural drift during massive refactors. |
+| **Background Loop** | Compute | Agents can execute tasks in the background while the developer remains in the editor. |
+
+---
+
+## 📅 Historical Timeline
+
+- **Oct 29, 2025**: Anysphere launches **Cursor 2.0**, introducing the first iteration of the Composer.
+- **Mar 19, 2026**: **Composer 2.0** GA. Significant performance jumps in multi-file reasoning and context pruning.
+- **Apr 2, 2026**: **Cursor 3.0** Evolution. The "Agents Window" milestone, enabling universal multi-repo orchestration.
 
 ---
 
